@@ -22,7 +22,7 @@ export const purchaseSchema = Joi.object({
         }).required(),
 
     paymentInfo: Joi.object({
-        creditCard: Joi.number().creditCard().required(),
+        creditCard: Joi.string().creditCard().required(),
         cardOwner: Joi.string().required(),
         cardExpiringDate: Joi.string().pattern(/^[0-9]{2}\/[0-9]{2}$/).required(),
         cvv: Joi.string().pattern(/^[0-9]{3}$/).required()
