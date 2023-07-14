@@ -13,9 +13,9 @@ export const purchaseSchema = Joi.object({
         })).required(),
 
     adressInfo: Joi.object({
-        adressName: Joi.string().required(),
+        addressName: Joi.string().required(),
         cep: Joi.string().pattern(/^(\d{5})[-]?(\d{3})$/).required(),
-        adress: Joi.string().required(),
+        address: Joi.string().required(),
         addressComplement: Joi.string().optional(),
         city: Joi.string().required(),
         state: Joi.string().required()
