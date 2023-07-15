@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { newPurchase } from "../controllers/purchases.controllers.js";
-import { validateSchema } from "../middlewares/validateSchema.js";
+import { listUserPurchases, newPurchase, purchaseDetails } from "../controllers/purchases.controllers.js";
 import { purchaseSchema } from "../schemas/purchaseSchema.js";
 import validateToken from "../middlewares/validateToken.js";
+import { validateBody } from "../middlewares/validateBody.js";
 
 const purchaseRouter = Router();
 
-purchaseRouter.post("/purchase", validateSchema(purchaseSchema), validateToken, newPurchase);
-
+purchaseRouter.post("/purchases", validateBody(purchaseSchema), validateToken, newPurchase);
+purchaseRouter.get("/purchases", validateToken, listUserPurchases);
+purchaseRouter.get("/purchases/:id", validateToken, purchaseDetails);
 
 export default purchaseRouter;
