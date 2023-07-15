@@ -1,4 +1,5 @@
 import db from "../database/database.connection.js";
+import { ObjectId } from "mongodb";
 
 export async function newPurchase (req,res){
     try{
@@ -18,6 +19,19 @@ export async function listUserPurchases(req,res){
         const userPurchases = await db.collection("purchases").find({ userId }).toArray();
         res.status(200).send(userPurchases);
     }
+    catch(err){
+        res.status(500).send(err.message);
+    }
+}
+
+export async function purchaseDetails(req,res){
+    const { id } = req.params
+
+    try{
+        const purchase = await db.collection("purchases").findOne({ _id: new ObjectId(id) });
+        res.status(200).send(purchase);
+    }
+
     catch(err){
         res.status(500).send(err.message);
     }
