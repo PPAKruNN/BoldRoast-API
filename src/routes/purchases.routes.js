@@ -6,7 +6,6 @@ import { purchaseSchema } from "../schemas/purchaseSchema";
 const purchaseRouter = Router();
 
 purchaseRouter.post("/purchase", validateSchema(purchaseSchema), newPurchase);
-purchaseRouter.delete("/purchase/:id", deletePurchase);
 
 
 export default purchaseRouter;
