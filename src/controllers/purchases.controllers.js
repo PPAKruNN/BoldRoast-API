@@ -1,5 +1,11 @@
 export async function newPurchase (req,res){
-    const {userId, notes, products, adressInfo, paymentInfo} = req.body;
-    const { authorization } = req.headers;
-	const token = authorization?.replace("Bearer ", "");
+    try{
+        const pedido = req.body;
+        pedido.userId = req.locals.userId;
+        await db.collection("purchases").insertOne(pedido);
+        res.sendStatus(201);
+    }
+    catch(err){
+        res.status(500).send(err.message);
+    }
 }

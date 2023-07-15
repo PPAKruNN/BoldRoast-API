@@ -1,8 +1,6 @@
 import Joi from "joi";
 
 export const purchaseSchema = Joi.object({
-    userId: Joi.string().required(),
-
     notes: Joi.string().optional(),
 
     products: Joi.array().items(
