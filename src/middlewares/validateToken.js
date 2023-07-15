@@ -1,12 +1,12 @@
 import Joi from "joi";
-import db from "../database/database.connection";
+import db from "../database/database.connection.js";
 
 /**
  * Middleware que obriga o usuario a enviar um TOKEN pelo HEADER Authorization.
  * Caso o token nao exista, a requisicao retorna 401.
  * 
  * Caso o token exista, ele estara sendo armazenado na variavel: req.locals.token
- * O userId sera armazenado em: res.locals.userId
+ * O userId sera armazenado em: req.locals.userId
  */
 export default async function validateToken(req, res, next) {
 
@@ -22,8 +22,9 @@ export default async function validateToken(req, res, next) {
         if(!sessionSearch) return res.send(401);
 
         req.locals.token = sessionSearch.token;
-        res.locals.userId = sessionSearch.userId; 
+        req.locals.userId = sessionSearch.userId; 
 
+        next();
     } 
     catch (error) 
     {
