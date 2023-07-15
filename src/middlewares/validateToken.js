@@ -11,10 +11,10 @@ import db from "../database/database.connection.js";
 export default async function validateToken(req, res, next) {
 
     try {
-        const { token } = req.headers;
-        if(!token) return res.status(401).send("Token de autenticacao nao enviado!");
+        const { authorization } = req.headers;
+        if(!authorization) return res.status(401).send("Token de autenticacao nao enviado!");
         
-        const currToken = token.replace("Bearer", "").trim();
+        const currToken = authorization.replace("Bearer", "").trim();
         const validation = Joi.string().uuid().required().validate(currToken);
         if(validation.error) return res.status(401).send(error);
 
