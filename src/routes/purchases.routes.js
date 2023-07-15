@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { newPurchase } from "../controllers/purchases.controllers";
-import { validateSchema } from "../middlewares/validateSchema";
-import { purchaseSchema } from "../schemas/purchaseSchema";
+import { newPurchase } from "../controllers/purchases.controllers.js";
+import { validateSchema } from "../middlewares/validateSchema.js";
+import { purchaseSchema } from "../schemas/purchaseSchema.js";
 
 const purchaseRouter = Router();
 
