@@ -29,6 +29,7 @@ export async function purchaseDetails(req,res){
 
     try{
         const purchase = await db.collection("purchases").findOne({ _id: new ObjectId(id) });
+        if (!purchase) return res.status(404).send("Pedido não encontrado");
         res.status(200).send(purchase);
     }
 
