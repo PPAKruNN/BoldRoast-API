@@ -10,7 +10,7 @@ export const purchaseSchema = Joi.object({
             productQuantity: Joi.number().integer().min(1).required()
         })).required(),
 
-    adressInfo: Joi.object({
+    addressInfo: Joi.object({
         addressName: Joi.string().required(),
         cep: Joi.string().pattern(/^(\d{5})[-]?(\d{3})$/).required(),
         address: Joi.string().required(),
