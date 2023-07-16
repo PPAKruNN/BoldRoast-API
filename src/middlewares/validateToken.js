@@ -18,8 +18,8 @@ export default async function validateToken(req, res, next) {
         const validation = Joi.string().uuid().required().validate(currToken);
         if(validation.error) return res.status(401).send(error);
 
-        const sessionSearch = await db.collection("Sessions").findOne({token: currToken});
-        if(!sessionSearch) return res.send(401);
+        const sessionSearch = await db.collection("sessions").findOne({token: currToken});
+        if(!sessionSearch) return res.sendStatus(401);
 
         res.locals.token = sessionSearch.token;
         res.locals.userId = sessionSearch.userId; 
