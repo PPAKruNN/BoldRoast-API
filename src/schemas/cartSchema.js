@@ -1,5 +1,5 @@
 import Joi from "joi";
-import productSchema from "./productSchema";
+import productSchema from "./productSchema.js";
 
 const cartSchema = Joi.object({
     products: Joi.array().items(Joi.object({
