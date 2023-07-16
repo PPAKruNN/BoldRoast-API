@@ -3,12 +3,13 @@ import db from "../database/database.connection.js";
 export async function getCart(req, res) {
 
     try {
-        const cartSearch = await db.collection("carts").findMany({userId: res.locals.userId});
+        const cartSearch = await db.collection("carts").findOne({userId: res.locals.userId});
         if(!cartSearch) res.sendStatus(404);
 
-        res.send(cartSearch);
+        res.send(cartSearch.products);
 
     } catch (error) {
+        console.log(`Error on cart controller: ${error}`)
         res.status(500).send(error);        
     }
 }
