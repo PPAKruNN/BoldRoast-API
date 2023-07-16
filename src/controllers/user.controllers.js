@@ -56,3 +56,15 @@ export async function register(req, res) {
         return res.status(500).send(error);
     }
 }
+
+export async function getUser(req, res) {
+
+    try {
+        const userSearch = await db.collection("users").findOne({_id: res.locals.userId});
+
+        return res.send(userSearch);
+
+    } catch(error) {
+        return res.status(500).send(error);
+    }
+}
