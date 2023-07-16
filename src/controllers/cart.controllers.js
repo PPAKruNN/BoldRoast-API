@@ -33,10 +33,11 @@ export async function deleteCart(req, res) {
         const cartDelete = await db.collection("carts").deleteOne({userId: res.locals.userId});
         if(cartDelete.deletedCount === 0) return res.sendStatus(404);
 
-        await db.collection("carts").insertOne({userId: req.locals.userId, products: []}); // Add an empty cart.
+        await db.collection("carts").insertOne({userId: res.locals.userId, products: []}); // Add an empty cart.
 
         res.sendStatus(200);
     } catch (error) {
+        console.log(`Error on cart delete: ${error}`)
         res.status(500).send(error);        
     }
 }
