@@ -61,7 +61,9 @@ export async function getUser(req, res) {
 
     try {
         const userSearch = await db.collection("users").findOne({_id: res.locals.userId});
-
+        delete userSearch.password
+        delete userSearch._id;
+        
         return res.send(userSearch);
 
     } catch(error) {
