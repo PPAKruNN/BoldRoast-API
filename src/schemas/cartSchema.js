@@ -6,7 +6,7 @@ const cartSchema = Joi.object({
         productId: Joi.string().required(),
         selectedVariations: Joi.array().items(productSchema),
         quantity: Joi.number().integer().required()
-    }))
+    })).required()
 }).required();
 
 export default cartSchema;
