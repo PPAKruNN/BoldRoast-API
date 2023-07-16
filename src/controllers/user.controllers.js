@@ -30,7 +30,7 @@ export async function register(req, res) {
         const emailSearch = await db.collection("users").findOne({email: data.email })
         if(emailSearch) return res.sendStatus(409);
         
-        const hashedPass = bcrypt.hashSync(data.password);
+        const hashedPass = bcrypt.hashSync(data.password, 10);
 
         const userInsert = await db.collection("users").insertOne({
             name: data.completeName, 
@@ -51,6 +51,7 @@ export async function register(req, res) {
         return res.sendStatus(200);
 
     } catch(error) {
+        console.log(error);
         return res.status(500).send(error);
     }
 }
