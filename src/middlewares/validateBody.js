@@ -4,6 +4,7 @@ export function validateBody(schema) {
 
         if (validation.error) {
             const errors = validation.error.details.map(detail => detail.message);
+            console.log(`Validation error: ${errors}`)
             return res.status(422).send(errors);
         }
 
