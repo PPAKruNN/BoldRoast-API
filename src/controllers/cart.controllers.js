@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import db from "../database/database.connection.js";
 
 export async function getCart(req, res) {
@@ -17,7 +18,7 @@ export async function getCart(req, res) {
 export async function updateCart(req, res) {
 
     try {
-        const cartUpdate = await db.collection("carts").updateOne({userId: res.locals.userId}, {$set: {products: req.body.products}});
+        const cartUpdate = await db.collection("carts").updateOne({userId: new ObjectId(res.locals.userId)}, {$set: {products: req.body.products}});
         if(cartUpdate.matchedCount === 0) return res.sendStatus(404);
 
         res.sendStatus(200);

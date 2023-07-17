@@ -3,10 +3,15 @@ import productSchema from "./productSchema.js";
 
 const cartSchema = Joi.object({
     products: Joi.array().items(Joi.object({
-        productId: Joi.string().required(),
-        selectedVariations: Joi.array().items(productSchema),
-        quantity: Joi.number().integer().required()
+        _id: Joi.string().required(),
+        name: Joi.string().required(),
+        price: Joi.number().required().min(0),
+        image: Joi.string().required(),
+        description: Joi.string().required(),
+        productVariation: Joi.string().required(),
+        productQuantity: Joi.number().integer().required()
     })).required()
 }).required();
 
 export default cartSchema;
+
