@@ -24,5 +24,6 @@ export const purchaseSchema = Joi.object({
         cardOwner: Joi.string().required(),
         cardExpiringDate: Joi.string().pattern(/^[0-9]{2}\/[0-9]{2}$/).required(),
         cvv: Joi.string().pattern(/^[0-9]{3}$/).required()
-        }).required()
+        }).required(),
+        installments: Joi.number().min(1).max(12).required()
 });
